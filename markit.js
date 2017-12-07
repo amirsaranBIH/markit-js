@@ -1,12 +1,11 @@
 // Created by Amir Šaran
 
 (function() {
-
   // List of styles that can be modified
   const regExps = {
     bold: {
       regexp: /(\*{2})(.*?)\1/g,
-      tag: '<strong>'
+      tag: '<b>'
     },
     emphasis: {
       regexp: /(\/{2})(.*?)\1/g,
@@ -16,7 +15,7 @@
       regexp: /(\_{2})(.*?)\1/g,
       tag: '<u>'
     },
-    linetrought: {
+    striketrough: {
       regexp: /(\-{2})(.*?)\1/g,
       tag: '<s>'
     },
@@ -44,16 +43,23 @@ regExps.constructor.prototype.getEndTag = function() {
 }
 
 // Main fucntion for markIt
-String.prototype.markIt = function() {
+String.prototype.markIt = function(...args) {
   // Raw input that needs to be styled properly
   let string = this.valueOf();
 
   // Looping trought all the available regular expressions and replacing with correct syntax
   for (let value in regExps) {
-    // Testing if the regular expression has found a match
-    if (regExps.hasOwnProperty(value) && regExps[value].regexp.test(string)) {
-      // If there is a match it replaces the inputed syntax with the correct HTML tags
-      string = string.replace(regExps[value].regexp, `${regExps[value].tag}$2${regExps[value].tag.getEndTag()}`);
+    // Checks if style is in argument
+    let inArgument = args.some(function(arg) {
+      return arg === regExps[value].tag;
+    });
+
+    if (!inArgument) {
+      // Testing if the regular expression has found a match
+      if (regExps.hasOwnProperty(value) && regExps[value].regexp.test(string)) {
+        // If there is a match it replaces the inputed syntax with the correct HTML tags
+        string = string.replace(regExps[value].regexp, `${regExps[value].tag}$2${regExps[value].tag.getEndTag()}`);
+      }
     }
   }
 
