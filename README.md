@@ -23,7 +23,7 @@ The only method you will need is .markIt(). Call it on a string and it will conv
 
 If you don't want a specific style to be applied you can just add the HTML tag as an argument:
 
-``` '**some text** //for// --example--'.markIt('<b>', <s>); ```
+``` '**some text** //for// --example--'.markIt('<b>', '<s>'); ```
 
 This will return:
 
