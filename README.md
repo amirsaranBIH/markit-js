@@ -3,7 +3,7 @@
 
 ## Intoduction
 
-A useful addition to your future or current projects for simple text markup with easy to remember syntax. It just uses one method ( .markIt() ) on strings and it converts the string into styled HTML text. You can style the following elements: ```<b>```, ```<em>```, ```<u>```, ```<s>```, ```<mark>```, ```<sub>```, ```<sup>``` and ```<code>```. 
+A useful addition to your future or current projects for simple text markup with easy to remember syntax. It just uses one method ( .markIt() ) on strings and it converts the string into styled HTML text. You can style the following elements: ```<b>```, ```<em>```, ```<u>```, ```<s>```, ```<mark>```, ```<sub>```, ```<sup>``` and ```<code>```.
 
 - Bold (```**example**```)
 - Emphasis (```//example//```)
@@ -17,16 +17,23 @@ A useful addition to your future or current projects for simple text markup with
 
 ## How to use
 
-The only method you will need is .markIt(). Call it on a string and it will convert the given string to HTML tags.
+The only method you will need is .markIt(). Call it on a string and it will convert the given string to HTML tags:
 
 ``` '//some example// text'.markIt(); ```
 
+If you don't want a specific style to be applied you can just add the HTML tag as a inArgument:
+
+``` '**some text** //for// --example--'.markIt('<b>', <s>); ```
+
+This will return:
+
+``` **some text** <em>for</em> --example-- ```
 
 ## Examples:
 
 ``` '**some example** text'.markIt(); ```
 
-This will return: 
+This will return:
 
 ``` <b>some example</b> text ```
 
@@ -37,7 +44,7 @@ const input = document.getElementById('input'),
       btn =document.getElementById('someBtn');
 
 btn.addEventListener('click', function() {
-      console.log(input.value.markIt()); 
+      console.log(input.value.markIt());
 });
 ```
 
